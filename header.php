@@ -1,3 +1,8 @@
+<?php
+include 'env.php';
+include 'src/RPC.php';
+include 'src/AccountManager.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
