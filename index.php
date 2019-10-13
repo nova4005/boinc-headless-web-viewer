@@ -2,13 +2,34 @@
 
 
 <?php
-// $rpc = new RPC('192.168.1.103', '31416', $password);
-// $auth = $rpc->authenticate();
-$acctMgr = new AccountManager($address, $port, $password);
-$info = $acctMgr->get_account_manager_info();
+$rpc = new RPC($address, $port, $password);
+// $acctMgr = new AccountManager($address, $port, $password);
+// $info = $acctMgr->get_account_manager_info();
+
+// $state = preg_replace('/\s/', '', $rpc->get_simple_gui_info());
+$state = json_encode(trim($rpc->get_simple_gui_info(),"\003"));
+// echo "<pre>";
+// print_r($state);
+// echo "</pre>";
+
+
+$xml = new XMLReader();
+$xml->xml($state);
+
+while($xml->read()) {
+	if ($xml->nodeType == XMLReader::ELEMENT) { //only opening tags.
+		$tag = $xml->name;
+		echo "$tag<br>";
+	}
+}
+
+
+// $p = xml_parser_create();
+// xml_parse_into_struct($p, $state, $vals, $index);
+
 
 echo "<pre>";
-print_r($info);
+var_dump($state);
 echo "</pre>";
 exit;
 
@@ -73,10 +94,10 @@ exit;
 		<div class="card-columns">
 			<?php
 			//Holds Active Tasks
-			$primeGridAccount = file_get_contents('/var/lib/boinc-client/client_state.xml');
+			// $primeGridAccount = file_get_contents('/var/lib/boinc-client/client_state.xml');
 
 			//XML Parser
-			$xml = simplexml_load_string($primeGridAccount) or die('Error: Cannot create object');
+			// $xml = simplexml_load_string($state) or die('Error: Cannot create object');
 
 			if (!empty($xml->active_task_set) && !empty($xml->active_task_set->active_task)) {
 				foreach ($xml->active_task_set->active_task as $task) { ?>
