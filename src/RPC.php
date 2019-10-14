@@ -38,7 +38,7 @@ class RPC {
         $request = $this->build_request($command);
         $auth = socket_write($this->socket, $request);
         $response = '';
-        while(($read = socket_read($this->socket, 1)) !== false) {
+        while(($read = socket_read($this->socket, 2048)) !== false) {
             $response .= $read;
             if (preg_match("</boinc_gui_rpc_reply>", $response)) {
                 break;
@@ -60,5 +60,15 @@ class RPC {
     public function get_simple_gui_info()
     {
         return $this->request("<get_simple_gui_info/>");
+    }
+
+    public function get_messages()
+    {
+        return $this->request("<get_messages/>");
+    }
+
+    public function get_results()
+    {
+        return $this->request("<get_results/>");
     }
 }

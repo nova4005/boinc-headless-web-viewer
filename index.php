@@ -7,31 +7,44 @@ $rpc = new RPC($address, $port, $password);
 // $info = $acctMgr->get_account_manager_info();
 
 // $state = preg_replace('/\s/', '', $rpc->get_simple_gui_info());
-$state = json_encode(trim($rpc->get_simple_gui_info(),"\003"));
-// echo "<pre>";
-// print_r($state);
-// echo "</pre>";
+$state = trim($rpc->get_results(), "\u0003^\003");
+echo "<pre>";
+echo htmlentities($state);
+echo "</pre>";
 
 
-$xml = new XMLReader();
-$xml->xml($state);
+// $xml = new XMLReader();
+// $xml->xml($state);
 
-while($xml->read()) {
-	if ($xml->nodeType == XMLReader::ELEMENT) { //only opening tags.
-		$tag = $xml->name;
-		echo "$tag<br>";
-	}
-}
+// $results = [];
+// while($xml->read()) {
+// 	if ($xml->nodeType == XMLReader::ELEMENT) { //only opening tags.
+// 		if($xml->name === 'result') {
+// 			$results[] = $xml
+// 		}
+// 		$tag = $xml->name;
+// 		// echo "$tag<br>";
+// 		echo "<pre>";
+// 		print_r($xml->value);
+// 		echo "</pre>";
+// 	}
+	
+// }
+
+$xml = simplexml_load_string($state) or die('Error: Cannot create object');
+echo "<pre>";
+print_r($xml);
+echo "</pre>";
 
 
 // $p = xml_parser_create();
 // xml_parse_into_struct($p, $state, $vals, $index);
 
 
-echo "<pre>";
-var_dump($state);
-echo "</pre>";
-exit;
+// echo "<pre>";
+// var_dump($state);
+// echo "</pre>";
+// exit;
 
 
 
@@ -82,13 +95,6 @@ exit;
 // exit;
 ?>
 
-
-<div class="jumbotron jumbotron-fluid">
-	<div class="container">
-		<p class="display-4">Boinc Headless Viewer</p>
-		<p class="lead">This web app will show you information about the boinc client running on your computer/server.</p>
-	</div>
-</div>
 <div class="container">
 	<div class="row">
 		<div class="card-columns">
