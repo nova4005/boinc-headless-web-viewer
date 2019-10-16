@@ -2,10 +2,10 @@
 include 'env.php';
 include 'src/RPC.php';
 include 'src/AccountManager.php';
+include 'src/helpers.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>Boinc Headless Viewer</title>
@@ -22,10 +22,10 @@ include 'src/AccountManager.php';
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Tasks <span class="sr-only">(current)</span></a>
+        <li class="nav-item <?= get_active_class('index.php'); ?>">
+          <a class="nav-link" href="/">Tasks</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item  <?= get_active_class('results.php'); ?>">
           <a class="nav-link" href="/views/results.php">Results</a>
         </li>
       </ul>
