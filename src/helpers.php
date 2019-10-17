@@ -13,7 +13,7 @@
         if (!empty($config) && is_array($config)) {
             $output = '';
             foreach ($config as $computer) {
-                $output .= "<div class=\"card\"><div class=\"card-body btn btn-lg btn-outline-success\" data-address='" . $computer['address'] . "'>" . $computer['address'] . "</div></div>";
+                $output .= "<div class=\"card\"><a class=\"card-body btn btn-lg btn-outline-success\" href='http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] . "/?address=" . $computer['address'] . "'>" . $computer['address'] . "</a></div>";
             }
             return $output;
         }

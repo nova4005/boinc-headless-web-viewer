@@ -4,7 +4,7 @@
         <div class="row">
             <div class="card-columns">
                 <?php
-                    $rpc = new RPC($address, $port, $password);
+                    $rpc = new RPC($_SESSION['address'], $_SESSION['port'], $_SESSION['password']);
                     $state = trim($rpc->get_results(), "\u0003^\003");
                     $xml = simplexml_load_string($state) or die('Error: Cannot create object');
                     echo "<pre>";
