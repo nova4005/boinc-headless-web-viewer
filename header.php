@@ -45,9 +45,7 @@
                     <div class="lead">Choose Computer</div>
                 </div>
                 <div class="row">
-                    <div class="card-columns">
                         <?= list_computers(); ?>
-                    </div>
                 </div>
             </div>
         </div>
