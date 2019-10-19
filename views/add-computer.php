@@ -5,10 +5,11 @@
         $address = filter_var($_POST['address'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $port = filter_var($_POST['port'], FILTER_SANITIZE_NUMBER_INT);
         $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-        $config[$address]['address'] = $address;
-        $config[$address]['port'] = $port;
-        $config[$address]['password'] = $password;
+        $config['computers'][$address]['address'] = $address;
+        $config['computers'][$address]['port'] = $port;
+        $config['computers'][$address]['password'] = $password;
         file_put_contents('../config.json', json_encode($config));
+        header("Refresh:0");
     }
 ?>
     <div class="container">

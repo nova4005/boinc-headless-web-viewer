@@ -10,9 +10,9 @@
     {
         $config = json_decode(file_get_contents('../config.json'), true);
 
-        if (!empty($config) && is_array($config)) {
+        if (!empty($config['computers']) && is_array($config['computers'])) {
             $output = '';
-            foreach ($config as $computer) {
+            foreach ($config['computers'] as $computer) {
                 $active = ($_SESSION['address'] === $computer['address']) ? 'btn-success' : 'btn-outline-success';
                 $output .= "<a class='btn mr-2 " . $active . "' href='http://" . $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME'] . "/?address=" . $computer['address'] . "'>" . $computer['address'] . "</a>";
             }
