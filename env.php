@@ -1,7 +1,7 @@
 <?php
 session_start();
-
-$comp = json_decode(file_get_contents('../config.json'), true);
+$configFile = $_SERVER['DOCUMENT_ROOT'] . '/config.json';
+$comp = json_decode(file_get_contents($configFile), true);
 $page = explode('/', $_SERVER['REQUEST_URI']);
 $page = end($page);
 

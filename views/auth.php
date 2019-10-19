@@ -7,9 +7,9 @@ if (!empty($_POST)) {
 
     if ($password === $passwordConfirm) {
         //Save Password
-        $config = json_decode(file_get_contents('../config.json'), true);
+        $config = json_decode(file_get_contents($configFile), true);
         $config['login_password'] = $password;
-        file_put_contents('../config.json', json_encode($config));
+        file_put_contents($configFile, json_encode($config));
         // $response = '<div class="alert alert-success" role="alert">You have saved your authentication password.</div>';
         header('Location: /views/login.php');
         exit;

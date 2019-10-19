@@ -3,7 +3,7 @@ include '../header.php';
 $response = null;
 if (!empty($_POST)) {
     $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-    $config = json_decode(file_get_contents('../config.json'), true);
+    $config = json_decode(file_get_contents($configFile), true);
     $passwordConfirm = $config['login_password'];
 
     if (!empty($passwordConfirm) && !empty($passwordConfirm) && $password === $passwordConfirm) {
