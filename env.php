@@ -13,9 +13,9 @@ $page = end($page);
 // exit;
 
 if(!empty($_GET['address'])) {
-    $_SESSION['password'] = $comp[$_GET['address']]['password'];
-    $_SESSION['address'] = $comp[$_GET['address']]['address'];
-    $_SESSION['port'] = $comp[$_GET['address']]['port'];
+    $_SESSION['password'] = $comp['computers'][$_GET['address']]['password'];
+    $_SESSION['address'] = $comp['computers'][$_GET['address']]['address'];
+    $_SESSION['port'] = $comp['computers'][$_GET['address']]['port'];
 }
 
 if(empty($comp['login_password']) && $page !== 'auth.php' && empty($_SESSION['logged_in'])) {
