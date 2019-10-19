@@ -8,7 +8,7 @@
 
     function list_computers()
     {
-        $config = json_decode(file_get_contents('../config.json'), true);
+        $config = json_decode(file_get_contents($configFile), true);
 
         if (!empty($config['computers']) && is_array($config['computers'])) {
             $output = '';
