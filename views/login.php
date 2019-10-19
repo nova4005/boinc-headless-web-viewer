@@ -8,7 +8,7 @@ if (!empty($_POST)) {
 
     if (!empty($passwordConfirm) && !empty($passwordConfirm) && $password === $passwordConfirm) {
         $_SESSION['logged_in'] = true;
-        header('Location: /views/index.php');
+        header('Location: /');
         exit;
     } else {
         $response = '<div class="alert alert-danger" role="alert">Your passwords do not match.</div>';
